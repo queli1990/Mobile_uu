@@ -15,7 +15,7 @@
 -(void)baseGetRequest:(NSDictionary *)params andTransactionSuffix:(NSString *) urlSuffix andBlock:(basehttpResponseBlock)block andFailure:(basehttpResponseBlock)failureBlock{
     
     NSString*url = [self buildUrlStr:params andTransactionSuffix:urlSuffix];
-    //    NSLog(@"url:%@",url);
+//        NSLog(@"url:%@",url);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -46,7 +46,7 @@
         }
         keyIndex ++;
     }
-    //    NSLog(@"urlstring:%@",urlString);
+//        NSLog(@"urlstring:%@",urlString);
     return urlString;
 }
 

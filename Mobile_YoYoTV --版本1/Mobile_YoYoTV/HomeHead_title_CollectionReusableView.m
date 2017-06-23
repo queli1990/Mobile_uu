@@ -25,14 +25,12 @@
         
         self.arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(ScreenWidth-15-8, 5+(30-16)/2, 8, 16)];
         _arrowImageView.image = [UIImage imageNamed:@"ArrowRight"];
-        _arrowImageView.userInteractionEnabled = YES;
         
         self.moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-15-8-5-40, 5, 40, 20)];
         _moreLabel.textAlignment = NSTextAlignmentRight;
         _moreLabel.font = [UIFont systemFontOfSize:14];
         _moreLabel.textColor = [UIColor grayColor];
         _moreLabel.text = @"更多";
-        _moreLabel.userInteractionEnabled = YES;
         
         self.categoryBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _categoryBtn.frame = CGRectMake(0, 0, ScreenWidth, 30);

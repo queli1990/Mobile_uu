@@ -9,7 +9,6 @@
 #import "LeftViewController.h"
 #import "UIViewController+NavPushHelper.h"
 #import "LeftVCTableViewCell.h"
-#import "PlayerViewController.h"
 #import "LoginViewController.h"
 #import "RegistViewController.h"
 #import "SettingViewController.h"

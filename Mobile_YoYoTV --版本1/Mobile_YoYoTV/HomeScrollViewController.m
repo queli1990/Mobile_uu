@@ -37,13 +37,13 @@
     // 颜色渐变
     style.gradualChangeTitleColor = YES;
     style.segmentViewBounces = NO;
-    style.segmentHeight = 28;
+    style.segmentHeight = 38;
     style.normalTitleColor = UIColorFromRGB(0xFFFFFF, 1.0);
     style.selectedTitleColor = UIColorFromRGB(0xFFFFFF, 1.0);
     // 设置附加按钮的背景图片
     
     CAGradientLayer *layer = [CAGradientLayer layer];
-    layer.frame = CGRectMake(0, 0, ScreenWidth, 20+28);
+    layer.frame = CGRectMake(0, 0, ScreenWidth, 20+38);
     //颜色分配:四个一组代表一种颜色(r,g,b,a)
     layer.colors = @[(__bridge id) [UIColor colorWithRed:247/255.0 green:136/255.0 blue:26/255.0 alpha:1.0].CGColor,
                      (__bridge id) [UIColor colorWithRed:247/255.0 green:175/255.0 blue:36/255.0 alpha:1.0].CGColor];
@@ -57,15 +57,15 @@
     self.scrollPageView = [[ZJScrollPageView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenHeight) segmentStyle:style titles:self.titles parentViewController:self delegate:self];
     _scrollPageView.backgroundColor = [UIColor clearColor];
     _scrollPageView.segmentView.backgroundColor = [UIColor clearColor];
-    [_scrollPageView setUpSegmentFrame:CGRectMake(15+30, 0, ScreenWidth-15-60-15, 28)];
+    [_scrollPageView setUpSegmentFrame:CGRectMake(15+30, 0, ScreenWidth-15-60-15, 38)];
     
     UIButton *personalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    personalBtn.frame = CGRectMake(15, 20, 20, 20);
+    personalBtn.frame = CGRectMake(15, 20+(38-20)/2, 20, 20);
     [personalBtn setImage:[UIImage imageNamed:@"Personal"] forState:UIControlStateNormal];
     [personalBtn addTarget:self action:@selector(goSettingPage:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchBtn.frame = CGRectMake(ScreenWidth-15-20, 20, 20, 20);
+    searchBtn.frame = CGRectMake(ScreenWidth-15-20, 20+(38-20)/2, 20, 20);
     [searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(goSearch:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -137,7 +137,7 @@
 }
 
 - (void)scrollPageController:(UIViewController *)scrollPageController childViewControllWillAppear:(UIViewController *)childViewController forIndex:(NSInteger)index {
-    NSLog(@"%ld ---将要出现",index);
+//    NSLog(@"%ld ---将要出现",index);
 }
 
 - (void)scrollPageController:(UIViewController *)scrollPageController childViewControllDidAppear:(UIViewController *)childViewController forIndex:(NSInteger)index {
@@ -145,7 +145,7 @@
 }
 
 - (void)scrollPageController:(UIViewController *)scrollPageController childViewControllWillDisappear:(UIViewController *)childViewController forIndex:(NSInteger)index {
-    NSLog(@"%ld ---将要消失",index);
+//    NSLog(@"%ld ---将要消失",index);
 }
 
 

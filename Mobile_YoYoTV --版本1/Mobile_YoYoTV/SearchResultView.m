@@ -80,6 +80,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.contentArray[indexPath.row];
+    if (!cell.model.pay) {
+        cell.vipImgView.hidden = YES;
+    }
     return cell;
 }
 

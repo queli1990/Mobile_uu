@@ -10,6 +10,8 @@
 #import "ListRequest.h"
 #import "NavView.h"
 #import "HomeCollectionViewCell.h"
+#import "PlayerViewController.h"
+#import "Mobile_YoYoTV-Swift.h"
 
 @interface ListViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) NSArray *contentArray;
@@ -71,9 +73,26 @@
     return self.contentArray.count;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HomeModel *model = self.contentArray[indexPath.row];
+    id isPayKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.uu.VIP"];
+    BOOL isPay = [isPayKey boolValue];
+    if (!isPay && model.pay) {
+        PurchaseViewController *vc = [PurchaseViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        PlayerViewController *vc = [[PlayerViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.contentArray[indexPath.row];
+    if (!cell.model.pay) {
+        cell.vipImgView.hidden = YES;
+    }
     return cell;
 }
 

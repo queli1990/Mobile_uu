@@ -14,5 +14,6 @@
 @property (nonatomic,strong) UIImageView *sumImageView;
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) HomeModel *model;
+@property (nonatomic,strong) UIImageView *vipImgView;
 
 @end

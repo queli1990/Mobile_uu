@@ -67,6 +67,11 @@
 		009E43471ED98B6D00DF39F0 /* NoResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 009E43461ED98B6D00DF39F0 /* NoResultView.m */; };
 		009E43491ED991C700DF39F0 /* placeholder_16_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E43481ED991C700DF39F0 /* placeholder_16_9.png */; };
 		009E434B1ED991FA00DF39F0 /* placeholder_107_152.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E434A1ED991FA00DF39F0 /* placeholder_107_152.png */; };
+		00C24A061EF7C9340049E20A /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C24A031EF7C9340049E20A /* PurchaseViewController.swift */; };
+		00C24A071EF7C9340049E20A /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C24A041EF7C9340049E20A /* PolicyViewController.swift */; };
+		00C24A081EF7C9340049E20A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C24A051EF7C9340049E20A /* IAPHelper.swift */; };
+		00C24A0C1EF8F5170049E20A /* purchase_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C24A0B1EF8F5170049E20A /* purchase_header.png */; };
+		00C24A0E1EF90F080049E20A /* VIP.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C24A0D1EF90F080049E20A /* VIP.png */; };
 		00DC760E1EC1C13B0036566D /* HomeHeadCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC760D1EC1C13B0036566D /* HomeHeadCollectionReusableView.m */; };
 		00DC76111EC1C1560036566D /* HomeHead_title_CollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC76101EC1C1560036566D /* HomeHead_title_CollectionReusableView.m */; };
 		00DC76141EC1C1A90036566D /* HomeFootCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DC76131EC1C1A90036566D /* HomeFootCollectionReusableView.m */; };
@@ -220,6 +225,12 @@
 		009E43461ED98B6D00DF39F0 /* NoResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoResultView.m; sourceTree = "<group>"; };
 		009E43481ED991C700DF39F0 /* placeholder_16_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder_16_9.png; sourceTree = "<group>"; };
 		009E434A1ED991FA00DF39F0 /* placeholder_107_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder_107_152.png; sourceTree = "<group>"; };
+		00C24A021EF7C9330049E20A /* Mobile_YoYoTV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobile_YoYoTV-Bridging-Header.h"; sourceTree = "<group>"; };
+		00C24A031EF7C9340049E20A /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		00C24A041EF7C9340049E20A /* PolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
+		00C24A051EF7C9340049E20A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		00C24A0B1EF8F5170049E20A /* purchase_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchase_header.png; sourceTree = "<group>"; };
+		00C24A0D1EF90F080049E20A /* VIP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VIP.png; sourceTree = "<group>"; };
 		00DC760C1EC1C13B0036566D /* HomeHeadCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionReusableView.h; sourceTree = "<group>"; };
 		00DC760D1EC1C13B0036566D /* HomeHeadCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionReusableView.m; sourceTree = "<group>"; };
 		00DC760F1EC1C1560036566D /* HomeHead_title_CollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHead_title_CollectionReusableView.h; sourceTree = "<group>"; };
@@ -348,6 +359,7 @@
 		001DC2541EB8663500AEC03D /* Mobile_YoYoTV */ = {
 			isa = PBXGroup;
 			children = (
+				00C24A011EF7C92B0049E20A /* Swift */,
 				001A6C381ECADA6A00C408E2 /* ThirtyFrame */,
 				001DC28D1EB86C0400AEC03D /* BaseHttpRequest */,
 				001DC28C1EB86BF800AEC03D /* Images */,
@@ -612,6 +624,19 @@
 			name = PlayerCustomView;
 			sourceTree = "<group>";
 		};
+		00C24A011EF7C92B0049E20A /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				00C24A0D1EF90F080049E20A /* VIP.png */,
+				00C24A0B1EF8F5170049E20A /* purchase_header.png */,
+				00C24A031EF7C9340049E20A /* PurchaseViewController.swift */,
+				00C24A041EF7C9340049E20A /* PolicyViewController.swift */,
+				00C24A051EF7C9340049E20A /* IAPHelper.swift */,
+				00C24A021EF7C9330049E20A /* Mobile_YoYoTV-Bridging-Header.h */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
 		00E80FCD1ECBE89900D27103 /* ZJScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +787,7 @@
 					001DC2511EB8663500AEC03D = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = UA783A5Y5N;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					001DC26A1EB8663600AEC03D = {
@@ -806,6 +832,7 @@
 				00E80FFC1ECD8C1600D27103 /* HomeBackground.png in Resources */,
 				00E1E7E71EDA762900E58C7C /* login_personal.png in Resources */,
 				00E1E7E31EDA752F00E58C7C /* login_back.png in Resources */,
+				00C24A0C1EF8F5170049E20A /* purchase_header.png in Resources */,
 				009E42EE1ED6800500DF39F0 /* leftPersonal.png in Resources */,
 				009E42E41ED6778100DF39F0 /* playHistory.png in Resources */,
 				001DC29F1EB88F7700AEC03D /* first_normal@2x.png in Resources */,
@@ -826,6 +853,7 @@
 				009E42EC1ED67B4200DF39F0 /* leftPoster.png in Resources */,
 				001DC2971EB88F5D00AEC03D /* second_normal@2x.png in Resources */,
 				001DC2621EB8663500AEC03D /* Assets.xcassets in Resources */,
+				00C24A0E1EF90F080049E20A /* VIP.png in Resources */,
 				00E1E7DB1ED9AC2900E58C7C /* ArrowLeft.png in Resources */,
 				009E42E61ED677C200DF39F0 /* setting.png in Resources */,
 				009E43491ED991C700DF39F0 /* placeholder_16_9.png in Resources */,
@@ -1031,17 +1059,20 @@
 				009E42F91ED6C7B500DF39F0 /* SearchResultRequest.m in Sources */,
 				001DC25A1EB8663500AEC03D /* AppDelegate.m in Sources */,
 				001DC3241EBC613900AEC03D /* LeftVCTableViewCell.m in Sources */,
+				00C24A081EF7C9340049E20A /* IAPHelper.swift in Sources */,
 				001DC2AD1EB9CB9B00AEC03D /* NavView.m in Sources */,
 				001DC2571EB8663500AEC03D /* main.m in Sources */,
 				00DC76141EC1C1A90036566D /* HomeFootCollectionReusableView.m in Sources */,
 				001DC2A61EB9ABCC00AEC03D /* HomeViewController.m in Sources */,
 				009E43041ED7C8E000DF39F0 /* PlayVCContentView.m in Sources */,
+				00C24A071EF7C9340049E20A /* PolicyViewController.swift in Sources */,
 				001DC3161EBB291E00AEC03D /* LeftViewController.m in Sources */,
 				001DC31C1EBC1D5400AEC03D /* UIViewController+NavPushHelper.m in Sources */,
 				003C0CB41ED2CF92004C2C6A /* SearchViewController.m in Sources */,
 				009E42F31ED6C25300DF39F0 /* SearchResultView.m in Sources */,
 				00E80FE51ECBE89900D27103 /* ZJSegmentStyle.m in Sources */,
 				00E80FDF1ECBE89900D27103 /* UIView+ZJFrame.m in Sources */,
+				00C24A061EF7C9340049E20A /* PurchaseViewController.swift in Sources */,
 				003C0CBB1ED2EC0F004C2C6A /* SearchHistory.m in Sources */,
 				001A6C341EC990E300C408E2 /* GetBaseHttpRequest.m in Sources */,
 				001DC2A31EB9785C00AEC03D /* NSString+encrypto.m in Sources */,
@@ -1200,6 +1231,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = UA783A5Y5N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Mobile_YoYoTV/PCH.pch";
@@ -1210,6 +1242,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c3b8f12-032d-4065-8c9e-263d619510dd";
 				PROVISIONING_PROFILE_SPECIFIER = YoYoMobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile_YoYoTV/Mobile_YoYoTV-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1219,6 +1255,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = UA783A5Y5N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Mobile_YoYoTV/PCH.pch";
@@ -1229,6 +1266,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c3b8f12-032d-4065-8c9e-263d619510dd";
 				PROVISIONING_PROFILE_SPECIFIER = YoYoMobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile_YoYoTV/Mobile_YoYoTV-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1236,6 +1276,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A79E96CA5E44CEEB52FC7EC1 /* Pods-Mobile_YoYoTV-Mobile_YoYoTVTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Mobile_YoYoTVTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1249,6 +1290,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CF880E02B7D09141D91C3CA /* Pods-Mobile_YoYoTV-Mobile_YoYoTVTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Mobile_YoYoTVTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1262,6 +1304,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 307E5C2A71C6ACFA6399D86D /* Pods-Mobile_YoYoTVUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Mobile_YoYoTVUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.test.Mobile-YoYoTVUITests";
@@ -1274,6 +1317,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0FD8802FCBFB6D7D46AD2BFD /* Pods-Mobile_YoYoTVUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Mobile_YoYoTVUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.test.Mobile-YoYoTVUITests";

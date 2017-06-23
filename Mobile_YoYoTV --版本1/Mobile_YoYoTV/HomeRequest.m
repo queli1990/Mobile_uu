@@ -27,6 +27,7 @@
         self.responseError = responseData.error;
         failureBlock(self);
     }];
+    
     return self;
 }
 
@@ -44,7 +45,11 @@
     self.responseHeadArray = [HomeModel modelsWithArray:headArray];
     
     for (int i = 0; i<[dic[@"data"] count]; i++) {
-        [self assembleData:dic[@"data"][i]];
+        NSArray *itemArray = dic[@"data"];
+        NSDictionary *itemDic = itemArray[i];
+        if ([itemDic[@"data"] count] > 0) {
+            [self assembleData:itemDic];
+        }
     }
     
     for (int i = 0; i<[dic[@"data"] count]; i++) {

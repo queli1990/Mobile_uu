@@ -13,6 +13,7 @@
 #import "HotSearchTableViewCell.h"
 #import "SearchResultView.h"
 #import "PlayerViewController.h"
+#import "Mobile_YoYoTV-Swift.h"
 
 @interface SearchViewController () <UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,HistoryBtnClickDelegate>
 @property (nonatomic,strong) SearchNav *nav;
@@ -92,9 +93,16 @@
     [_resultView requestData];
     __weak __typeof(self) weakSelf = self;
     _resultView.passHomeModel = ^(HomeModel *model) {
-        PlayerViewController *vc = [[PlayerViewController alloc] init];
-        vc.model = model;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        id isPayKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.uu.VIP"];
+        BOOL isPay = [isPayKey boolValue];
+        if (!isPay && model.pay) {
+            PurchaseViewController *vc = [PurchaseViewController new];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            PlayerViewController *vc = [[PlayerViewController alloc] init];
+            vc.model = model;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
     };
     [self.view addSubview:_resultView];
 }
@@ -164,6 +172,7 @@
 - (void) setNav {
     self.nav = [[SearchNav alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
     _nav.inputTextField.delegate = self;
+    _nav.inputTextField.returnKeyType = UIReturnKeySearch;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBack:)];
     [_nav.cancelLabel addGestureRecognizer:tap];
     [self.view addSubview:_nav];

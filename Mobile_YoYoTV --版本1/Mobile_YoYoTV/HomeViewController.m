@@ -16,6 +16,7 @@
 #import "HomeRequest.h"
 #import "PlayerViewController.h"
 #import "StorageHelper.h"
+#import "Mobile_YoYoTV-Swift.h"
 
 
 @interface HomeViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HomeCirculationScrollViewDelegate,UIScrollViewDelegate>
@@ -68,7 +69,6 @@
     HomeRequest *requet = [[HomeRequest alloc] init];
     requet.currentIndex = self.currentIndex;
     [requet requestData:dic andBlock:^(HomeRequest *responseData) {
-        NSLog(@"success");
         self.headArray = responseData.responseHeadArray;
         self.contentArray = responseData.responseDataArray;
         self.titleArray = responseData.titleArray;
@@ -98,7 +98,7 @@
     layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-20-28) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-20-38) collectionViewLayout:layout];
     [_collectionView registerClass:[HomeCollectionViewCell class] forCellWithReuseIdentifier:@"HomeCollectionViewCell"];
     [_collectionView registerClass:[HomeHeadCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeHeadCollectionReusableView"];
     [_collectionView registerClass:[HomeHead_title_CollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeHead_title_CollectionReusableView"];
@@ -126,9 +126,12 @@
 
 //每个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    HomeModel *model = _contentArray[indexPath.section][indexPath.row];
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCollectionViewCell" forIndexPath:indexPath];
-    NSArray *arr = _contentArray[indexPath.section];
-    cell.model = arr[indexPath.row];
+    cell.model = model;
+    if (!model.pay) {
+        cell.vipImgView.hidden = YES;
+    }
     return cell;
 }
 
@@ -186,17 +189,35 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    PlayerViewController *vc = [[PlayerViewController alloc] init];
-    NSArray *arr = _contentArray[indexPath.section];
-    vc.model = arr[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    HomeModel *model = _contentArray[indexPath.section][indexPath.row];
+    id isPayKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.uu.VIP"];
+    BOOL isPay = [isPayKey boolValue];
+    if (!isPay && model.pay) {
+        PurchaseViewController *vc = [PurchaseViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        PlayerViewController *vc = [[PlayerViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    //PolicyViewController *vc = [PolicyViewController new];
+    //[self.navigationController pushViewController:vc animated:YES];
 }
 
 //滚动视图的代理方法
 - (void) didSecectedHomeCirculationScrollViewAnIndex:(NSInteger)currentpage{
-    PlayerViewController *vc = [[PlayerViewController alloc] init];
-    vc.model = _headArray[currentpage];
-    [self.navigationController pushViewController:vc animated:YES];
+    id isPayKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.uu.VIP"];
+    BOOL isPay = [isPayKey boolValue];
+    HomeModel *model = _headArray[currentpage];
+    if (!isPay && model.pay) {
+        PlayerViewController *vc = [[PlayerViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        PurchaseViewController *vc = [PurchaseViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void) addStorageHelper {

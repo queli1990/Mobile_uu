@@ -55,12 +55,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingTableViewCell" forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-30-15, (44-20)/2, 30, 20)];
-        newLabel.text = @"最新";
-        newLabel.backgroundColor = UIColorFromRGB(0x7ED321, 1.0);
+        UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-60-15, (44-20)/2, 60, 20)];
+        newLabel.text = @"1.0版本";
+//        newLabel.backgroundColor = UIColorFromRGB(0x7ED321, 1.0);
         newLabel.font = [UIFont systemFontOfSize:13];
         newLabel.textAlignment = NSTextAlignmentRight;
-        newLabel.textColor = [UIColor whiteColor];
+        newLabel.textColor = UIColorFromRGB(0x4A4A4A, 1.0);
         [cell.contentView addSubview:newLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
@@ -74,7 +74,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
-        [ShowToast showToastWithString:@"已是最新版本" withBackgroundColor:[UIColor orangeColor] withTextFont:18];
+        
     } else if (indexPath.row == 1) {
         NSString * url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",@"1214672760"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -95,7 +95,7 @@
 
 - (NSArray *)titlesArray {
     if (_titlesArray == nil) {
-        NSDictionary *dic1 = @{@"title":@"版本更新"};
+        NSDictionary *dic1 = @{@"title":@"当前版本"};
         NSDictionary *dic2 = @{@"title":@"我来打分"};
         _titlesArray = @[dic1,dic2];
     }

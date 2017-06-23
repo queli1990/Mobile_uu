@@ -27,10 +27,15 @@
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = [UIFont systemFontOfSize:14.0];
         
+        
         [imageView addSubview:_titleLabel];
         [_sumImageView addSubview:imageView];
-        
         [self.contentView addSubview:_sumImageView];
+        
+        
+        self.vipImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _vipImgView.image = [UIImage imageNamed:@"VIP.png"];
+        [self.contentView addSubview:_vipImgView];
     }
     return self;
 }

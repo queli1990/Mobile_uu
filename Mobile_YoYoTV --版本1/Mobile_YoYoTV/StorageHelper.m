@@ -22,7 +22,7 @@ static StorageHelper *single = nil;
         single = [[StorageHelper alloc]init];
     });
     
-    NSLog(@"single = %p",single);
+//    NSLog(@"single = %p",single);
     
     return  single;//4:返回已经初始化的single指针
 }

@@ -50,6 +50,7 @@
         _totalEpisodeLabel = [self dealLabel:_totalEpisodeLabel Font:[UIFont systemFontOfSize:13] color:UIColorFromRGB(0x000000, 1.0) textAlignment:NSTextAlignmentRight];
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_totalEpisodeLabel.frame)+8, ScreenWidth, 66)];
+        _scrollView.showsHorizontalScrollIndicator = NO;
         CGFloat itemwidth = 166;
         CGFloat itemheight = 66;
         for (int i = 0; i<self.playUrlArray.count; i++) {
@@ -84,6 +85,7 @@
         _totalEpisodeLabel = [self dealLabel:_totalEpisodeLabel Font:[UIFont systemFontOfSize:13] color:UIColorFromRGB(0x000000, 1.0) textAlignment:NSTextAlignmentRight];
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_totalEpisodeLabel.frame)+8, ScreenWidth, 40)];
+        _scrollView.showsHorizontalScrollIndicator = NO;
         CGFloat itemwidth = 40;
         CGFloat itemheight = 40;
         for (int i = 0; i<self.playUrlArray.count; i++) {
