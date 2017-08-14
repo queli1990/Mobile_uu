@@ -52,18 +52,40 @@
     //发起请求
     [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Success");
-            [self jsonUrlArray:responseObject];
-            block(self);
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            if ([dic[@"total"] integerValue] > 100) {
+                
+                AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+//                //不设置会报-1016或者会有编码问题
+                manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//                //不设置会报 error 3840
+                manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"application/vnd.vimeo.video+json", nil];
+                //创建你得请求url、设置请求头
+                NSString *url = [NSString stringWithFormat:@"https://api.vimeo.com/me/albums/%@/videos?direction=desc&page=2&per_page=100",self.vimeo_id];
+                NSString *token = [NSString stringWithFormat:@"Bearer %@",self.vimeo_token];
+                NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"GET" URLString:url parameters:nil error:nil];
+                [request addValue:token forHTTPHeaderField:@"Authorization"];
+                [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                    NSDictionary *dic2 = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+                    NSMutableArray *array = dic[@"data"];
+                    NSMutableArray *newArray = dic2[@"data"];
+                    [array addObjectsFromArray:newArray];
+                    NSDictionary *dic = @{@"data":array};
+                    [self jsonUrlArray:dic];
+                    block(self);
+                }] resume];
+            } else {
+                [self jsonUrlArray:dic];
+                block(self);
+            }
         } else {
-            NSLog(@"Error");
             failureBlock(self);
         }
     }] resume];
 }
 
-- (void) jsonUrlArray:(id)responseObject {
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+- (void) jsonUrlArray:(NSDictionary *)dic {
     if (self.genre_id.integerValue == 3) {
         self.vimeo_responseDataDic = dic;
     }else {
@@ -76,19 +98,43 @@
 
 - (void) orderArray:(NSArray *)array {
     NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:0];
-    for (int i = 0; i<array.count; i++) {
-        NSMutableDictionary *dic = array[i];
-        int i = [self addIndex:dic[@"name"]];
-        [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"index"];
-        [tempArray addObject:dic];
+    if (self.genre_id.integerValue == 4) {// 如果是综艺类别，去除大标题，只保留期数
+        for (int i = 0; i<array.count; i++) {
+            NSMutableDictionary *dic = array[i];
+            int i = [self addIndex:dic[@"name"]];
+            [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"index"];
+            //将综艺的name替换
+            NSString *pattern = [NSString stringWithFormat:@"%@\\s*",_regexName];
+            NSRange range = [dic[@"name"] rangeOfString:pattern options:NSRegularExpressionSearch];
+            NSString *name = [dic[@"name"] substringFromIndex:range.length];
+            [dic setObject:name forKey:@"name"];
+            [tempArray addObject:dic];
+        }
+    } else {
+        for (int i = 0; i<array.count; i++) {
+            NSMutableDictionary *dic = array[i];
+            int i = [self addIndex:dic[@"name"]];
+            [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"index"];
+            [tempArray addObject:dic];
+        }
     }
+    
     [tempArray sortUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2)
      {
-         //此处的规则含义为：若前一元素比后一元素小，则返回降序（即后一元素在前，为从大到小排列）
-         if ([obj1[@"index"] integerValue] > [obj2[@"index"] integerValue]){
-             return NSOrderedDescending;
+         if (self.genre_id.integerValue == 4) {
+             //此处的规则含义为：若前一元素比后一元素小，则返回降序（即后一元素在前，为从大到小排列
+             if ([obj1[@"index"] integerValue] < [obj2[@"index"] integerValue]){
+                 return NSOrderedDescending;
+             } else {
+                 return NSOrderedAscending;
+             }
          } else {
-             return NSOrderedAscending;
+             //此处的规则含义为：若前一元素比后一元素小，则返回降序（即后一元素在前，为从大到小排列
+             if ([obj1[@"index"] integerValue] > [obj2[@"index"] integerValue]){
+                 return NSOrderedDescending;
+             } else {
+                 return NSOrderedAscending;
+             }
          }
      }];
     self.vimeo_responseDataArray = tempArray;
