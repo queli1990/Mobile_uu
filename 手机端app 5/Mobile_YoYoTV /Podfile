@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Mobile_YoYoTV' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+  pod 'AFNetworking', '~> 3.0'
+  pod 'SDWebImage', '~>3.8'
+  pod 'MJRefresh'
+  pod 'SVProgressHUD'
+  pod 'RDVTabBarController'
+  pod 'Masonry'
+  pod 'ZFPlayer'
+  pod 'LGSideMenuController'
+  pod 'CRToast', '~> 0.0.7'
+  pod 'BHInfiniteScrollView'
+  pod 'TYPagerController'
+  pod 'TLYShyNavBar'
+
+
+  # Pods for Mobile_YoYoTV
+
+target 'Mobile_YoYoTVTests' do
+    
+    # Pods for testing
+  end
+
+  target 'Mobile_YoYoTVUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
